@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/moviesFragment"
+        android:title="Movies"
+        android:icon="@drawable/ic_movies"
+        />
+
+    <item
+        android:id="@+id/exploreFragment"
+        android:title="Explore"
+        android:icon="@drawable/ic_explore"
+        />
+
+    <item
+        android:id="@+id/myPostsFragment"
+        android:title="My Posts"
+        android:icon="@drawable/ic_myposts"
+        />
+
+    <item
+        android:id="@+id/accountFragment"
+        android:title="Account"
+        android:icon="@drawable/ic_account"
+        />
+
+</menu>

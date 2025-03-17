@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/moviesFragment">
+
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="net.moviemate.app.v.fragments.MoviesFragment"
+        android:label="Movies Feed"
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_moviesFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_myPostsFragment"
+            app:destination="@id/myPostsFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="net.moviemate.app.v.fragments.ExploreFragment"
+        android:label="Explore"
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_exploreFragment_to_myPostsFragment"
+            app:destination="@id/myPostsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPostsFragment"
+        android:name="net.moviemate.app.v.fragments.MyPostsFragment"
+        android:label="My Posts"
+        tools:layout="@layout/fragment_my_posts" >
+        <action
+            android:id="@+id/action_myPostsFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+        <action
+            android:id="@+id/action_myPostsFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_myPostsFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="net.moviemate.app.v.fragments.AccountFragment"
+        android:label="My Account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_myPostsFragment"
+            app:destination="@id/myPostsFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+    </fragment>
+</navigation>
