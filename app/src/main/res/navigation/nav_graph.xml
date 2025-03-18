@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_moviesFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_addMovieFragment"
+            app:destination="@id/addMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -62,4 +65,9 @@
             android:id="@+id/action_accountFragment_to_exploreFragment"
             app:destination="@id/exploreFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addMovieFragment"
+        android:name="net.moviemate.app.v.fragments.AddMovieFragment"
+        android:label="Add New Movie"
+        tools:layout="@layout/fragment_add_movie" />
 </navigation>

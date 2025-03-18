@@ -11,6 +11,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import net.moviemate.app.m.User
+import net.moviemate.app.utils.UserSession
 
 class AuthViewModel : ViewModel() {
 
@@ -65,7 +66,7 @@ class AuthViewModel : ViewModel() {
                     saveUserToFirestore(userId, userData)
 
                     // Step 5: Update LiveData
-                    _userLiveData.postValue(User(userId, email, imageUrl))
+                    _userLiveData.postValue(User(userId,username, email, imageUrl))
                 }
             } catch (e: Exception) {
                 _authStatus.postValue("Signup Failed: ${e.message}")
@@ -91,6 +92,9 @@ class AuthViewModel : ViewModel() {
                 val document = firestore.collection("users").document(userId).get().await()
                 if (document.exists()) {
                     val user = document.toObject(User::class.java)
+                    if (user != null){
+                        UserSession.setUser(user)
+                    }
                     _userLiveData.postValue(user)
                 } else {
                     _authStatus.postValue("User not found")
@@ -107,6 +111,7 @@ class AuthViewModel : ViewModel() {
                 auth.currentUser?.let { user ->
                     firestore.collection("users").document(user.uid)
                         .update("username", newUsername).await()
+                    fetchUserDetails(user.uid)
                     _profileUpdateStatus.postValue("Username updated successfully")
                 }
             } catch (e: Exception) {
