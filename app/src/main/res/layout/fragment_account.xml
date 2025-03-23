@@ -1,9 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".v.fragments.AccountFragment">
 
 
-</FrameLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:background="@drawable/profile_card_bg"
+        android:padding="24dp"
+        android:layout_margin="10dp"
+        android:elevation="6dp"
+        android:layout_centerInParent="true">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/placeholder"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/primary"
+               />
+
+        </FrameLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="John Doe"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xxx@xx.com"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:background="@drawable/btn_primary"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textSize="20sp"
+                android:background="@drawable/btn_red"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

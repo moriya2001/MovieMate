@@ -64,10 +64,18 @@
         <action
             android:id="@+id/action_accountFragment_to_exploreFragment"
             app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_updateAccountDetailFragment"
+            app:destination="@id/updateAccountDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMovieFragment"
         android:name="net.moviemate.app.v.fragments.AddMovieFragment"
         android:label="Add New Movie"
         tools:layout="@layout/fragment_add_movie" />
+    <fragment
+        android:id="@+id/updateAccountDetailFragment"
+        android:name="net.moviemate.app.v.fragments.UpdateAccountDetailFragment"
+        android:label="Update Account Detail"
+        tools:layout="@layout/fragment_update_account_detail" />
 </navigation>

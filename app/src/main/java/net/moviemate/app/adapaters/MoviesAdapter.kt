@@ -33,6 +33,8 @@ class MoviesAdapter(private val movies: List<Movie>, private val isActionEnable:
                Picasso.get()
                    .load(movie.image)
                    .placeholder(R.drawable.placeholder)
+                   .resize(600,400)
+                   .centerCrop()
                    .into(binding.movieImage)
            }
 
@@ -40,6 +42,8 @@ class MoviesAdapter(private val movies: List<Movie>, private val isActionEnable:
                 Picasso.get()
                     .load(movie.userImage)
                     .placeholder(R.drawable.placeholder)
+                    .resize(200,200)
+                    .centerCrop()
                     .into(binding.userImage)
             }
 

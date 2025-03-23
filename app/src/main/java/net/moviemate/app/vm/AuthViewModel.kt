@@ -105,33 +105,33 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun updateUsername(newUsername: String) {
+    fun updateProfile(newUsername: String?, profileImageUri: Uri?) {
         viewModelScope.launch {
             try {
                 auth.currentUser?.let { user ->
-                    firestore.collection("users").document(user.uid)
-                        .update("username", newUsername).await()
-                    fetchUserDetails(user.uid)
-                    _profileUpdateStatus.postValue("Username updated successfully")
-                }
-            } catch (e: Exception) {
-                _profileUpdateStatus.postValue("Failed to update username: ${e.message}")
-            }
-        }
-    }
+                    val updates = mutableMapOf<String, Any>()
 
-    fun updateProfileImage(profileImageUri: Uri) {
-        viewModelScope.launch {
-            try {
-                auth.currentUser?.let { user ->
-                    val imageUrl = uploadProfileImage(user.uid, profileImageUri)
-                    firestore.collection("users").document(user.uid)
-                        .update("image", imageUrl).await()
-                    fetchUserDetails(user.uid)
-                    _profileUpdateStatus.postValue("Profile image updated successfully")
+                    newUsername?.let {
+                        updates["username"] = it
+                    }
+
+                    profileImageUri?.let { uri ->
+                        val imageUrl = uploadProfileImage(user.uid, uri)
+                        updates["image"] = imageUrl
+                    }
+
+                    if (updates.isNotEmpty()) {
+                        firestore.collection("users").document(user.uid)
+                            .update(updates).await()
+                        fetchUserDetails(user.uid)
+
+                        _profileUpdateStatus.postValue("Profile updated successfully")
+                    } else {
+                        _profileUpdateStatus.postValue("No changes to update")
+                    }
                 }
             } catch (e: Exception) {
-                _profileUpdateStatus.postValue("Failed to update profile image: ${e.message}")
+                _profileUpdateStatus.postValue("Failed to update profile: ${e.message}")
             }
         }
     }
