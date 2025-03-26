@@ -14,6 +14,7 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
 
     interface OnItemClickListener {
         fun onItemClick(position: Int, movie: Movie)
+        fun onItemEditClick(position: Int,movie: Movie)
         fun onItemDelete(position: Int,movie: Movie)
     }
 
@@ -58,6 +59,10 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
 
             binding.postDeleteView.setOnClickListener {
                 mListener.onItemDelete(layoutPosition,movie)
+            }
+
+            binding.postEditView.setOnClickListener {
+                mListener.onItemEditClick(layoutPosition,movie)
             }
         }
     }

@@ -15,6 +15,7 @@ import net.moviemate.app.databinding.FragmentMoviesBinding
 import net.moviemate.app.m.Movie
 import net.moviemate.app.mvf.MoviesViewModelFactory
 import net.moviemate.app.room.MovieDatabase
+import net.moviemate.app.utils.UserSession
 import net.moviemate.app.utils.WrapContentLinearLayoutManager
 import net.moviemate.app.vm.MoviesViewModel
 
@@ -81,6 +82,12 @@ class MoviesFragment : Fragment(),MoviesAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int, movie: Movie) {
 
+    }
+
+    override fun onItemEditClick(position: Int, movie: Movie) {
+        val action = MoviesFragmentDirections.actionMoviesFragmentToEditMovieFragment(
+            movie)
+        findNavController().navigate(action)
     }
 
     override fun onItemDelete(position: Int, movie: Movie) {

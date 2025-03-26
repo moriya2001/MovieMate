@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import net.moviemate.app.R
 import net.moviemate.app.adapaters.MoviesAdapter
 import net.moviemate.app.databinding.FragmentMyPostsBinding
 import net.moviemate.app.m.Movie
@@ -70,6 +72,12 @@ class MyPostsFragment : Fragment(),MoviesAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int, movie: Movie) {
 
+    }
+
+    override fun onItemEditClick(position: Int, movie: Movie) {
+        val action = MyPostsFragmentDirections.actionMyPostsFragmentToEditMovieFragment(
+            movie)
+        findNavController().navigate(action)
     }
 
     override fun onItemDelete(position: Int, movie: Movie) {

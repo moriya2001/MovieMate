@@ -9,9 +9,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Movie(
     @PrimaryKey val id:String,
-    val title:String,
-    val review:String,
-    val link:String,
+    var title:String,
+    var review:String,
+    var link:String,
     val image:String,
     val userId:String,
     val username:String,

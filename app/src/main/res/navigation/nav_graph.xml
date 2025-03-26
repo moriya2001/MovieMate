@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_moviesFragment_to_addMovieFragment"
             app:destination="@id/addMovieFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_editMovieFragment"
+            app:destination="@id/editMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -49,6 +52,9 @@
         <action
             android:id="@+id/action_myPostsFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_myPostsFragment_to_editMovieFragment"
+            app:destination="@id/editMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -82,6 +88,17 @@
         <argument
             android:name="user"
             app:argType="net.moviemate.app.m.User" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/editMovieFragment"
+        android:name="net.moviemate.app.v.fragments.EditMovieFragment"
+        android:label="Edit Movie Detail"
+        tools:layout="@layout/fragment_edit_movie" >
+
+        <argument
+            android:name="movie"
+            app:argType="net.moviemate.app.m.Movie" />
 
     </fragment>
 </navigation>
