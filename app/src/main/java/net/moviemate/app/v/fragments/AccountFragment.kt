@@ -38,18 +38,18 @@ class AccountFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onResume() {
+        super.onResume()
         if (UserSession.getUser() != null){
             val user = UserSession.getUser()
             binding.apply {
                 if (user!!.image.isNotEmpty()){
                     Picasso.get()
                         .load(user.image)
-                        .placeholder(R.drawable.placeholder)
+                        .placeholder(R.drawable.loader)
                         .resize(200,200)
                         .centerCrop()
+                        .error(R.drawable.placeholder)
                         .into(profileImageView)
                 }
 
@@ -57,6 +57,12 @@ class AccountFragment : Fragment() {
                 tvUserEmail.text = user.email
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.btnLogout.setOnClickListener {
             val builder = MaterialAlertDialogBuilder(requireActivity())
@@ -81,7 +87,8 @@ class AccountFragment : Fragment() {
         }
 
         binding.btnEditProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_accountFragment_to_updateAccountDetailFragment)
+            val action = AccountFragmentDirections.actionAccountFragmentToUpdateAccountDetailFragment(UserSession.getUser()!!)
+            findNavController().navigate(action)
         }
     }
 

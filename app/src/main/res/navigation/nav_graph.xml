@@ -77,5 +77,11 @@
         android:id="@+id/updateAccountDetailFragment"
         android:name="net.moviemate.app.v.fragments.UpdateAccountDetailFragment"
         android:label="Update Account Detail"
-        tools:layout="@layout/fragment_update_account_detail" />
+        tools:layout="@layout/fragment_update_account_detail" >
+
+        <argument
+            android:name="user"
+            app:argType="net.moviemate.app.m.User" />
+
+    </fragment>
 </navigation>

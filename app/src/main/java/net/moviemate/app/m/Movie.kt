@@ -1,10 +1,12 @@
 package net.moviemate.app.m
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "movies")
+@Parcelize
 data class Movie(
     @PrimaryKey val id:String,
     val title:String,
@@ -15,6 +17,6 @@ data class Movie(
     val username:String,
     val userImage:String,
     val timeStamp:Long
-):Serializable{
+): Parcelable {
     constructor():this("","","","","","","","",0)
 }

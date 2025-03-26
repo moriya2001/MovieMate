@@ -66,11 +66,17 @@ class MoviesFragment : Fragment(),MoviesAdapter.OnItemClickListener {
            }
         }
 
+
         binding.addFabBtn.setOnClickListener {
             findNavController().navigate(R.id.action_moviesFragment_to_addMovieFragment)
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllMovies()
     }
 
     override fun onItemClick(position: Int, movie: Movie) {

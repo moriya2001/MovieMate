@@ -10,7 +10,7 @@ import net.moviemate.app.databinding.ItemMovieDesignBinding
 import net.moviemate.app.m.Movie
 import net.moviemate.app.utils.UserSession
 
-class MoviesAdapter(private val movies: List<Movie>, private val isActionEnable:Boolean = false) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(position: Int, movie: Movie)
@@ -32,18 +32,20 @@ class MoviesAdapter(private val movies: List<Movie>, private val isActionEnable:
            if (movie.image.isNotEmpty()){
                Picasso.get()
                    .load(movie.image)
-                   .placeholder(R.drawable.placeholder)
+                   .placeholder(R.drawable.loader)
                    .resize(600,400)
                    .centerCrop()
+                   .error(R.drawable.placeholder)
                    .into(binding.movieImage)
            }
 
             if (movie.userImage.isNotEmpty()){
                 Picasso.get()
                     .load(movie.userImage)
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.loader)
                     .resize(200,200)
                     .centerCrop()
+                    .error(R.drawable.placeholder)
                     .into(binding.userImage)
             }
 

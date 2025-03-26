@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import net.moviemate.app.m.User
@@ -124,7 +125,7 @@ class AuthViewModel : ViewModel() {
                         firestore.collection("users").document(user.uid)
                             .update(updates).await()
                         fetchUserDetails(user.uid)
-
+                        delay(3000)
                         _profileUpdateStatus.postValue("Profile updated successfully")
                     } else {
                         _profileUpdateStatus.postValue("No changes to update")

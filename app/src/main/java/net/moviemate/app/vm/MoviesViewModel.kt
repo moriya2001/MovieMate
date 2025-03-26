@@ -26,9 +26,9 @@ class MoviesViewModel(private val movieDao: MovieDao) : ViewModel() {
     private val _moviesLiveData = MutableLiveData<List<Movie>>()
     val moviesLiveData: LiveData<List<Movie>> get() = _moviesLiveData
 
-    init {
-        syncMoviesWithFirestore()
-    }
+    private val _userMoviesLiveData = MutableLiveData<List<Movie>>()
+    val userMoviesLiveData: LiveData<List<Movie>> get() = _userMoviesLiveData
+
 
     fun insertMovie(movie: Movie, imageUri: Uri?) {
         _isLoading.postValue(true)
@@ -87,7 +87,7 @@ class MoviesViewModel(private val movieDao: MovieDao) : ViewModel() {
     }
 
 
-    private fun syncMoviesWithFirestore() {
+    fun getAllMovies() {
         _isLoading.postValue(true)
         viewModelScope.launch(Dispatchers.IO) {
             val moviesList = mutableListOf<Movie>()
@@ -102,6 +102,16 @@ class MoviesViewModel(private val movieDao: MovieDao) : ViewModel() {
                     _isLoading.postValue(false)
                 }
 
+            }
+        }
+    }
+
+     fun getAllMoviesByUserId(userId:String) {
+        _isLoading.postValue(true)
+        viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch {
+                _userMoviesLiveData.postValue(movieDao.getMoviesByUserId(userId))
+                _isLoading.postValue(false)
             }
         }
     }

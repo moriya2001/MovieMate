@@ -18,6 +18,9 @@ interface MovieDao {
     @Query("SELECT * FROM movies ORDER BY timeStamp DESC")
     suspend fun getAllMovies(): List<Movie>
 
+    @Query("SELECT * FROM movies WHERE userId = :userId ORDER BY timestamp DESC")
+    suspend fun getMoviesByUserId(userId: String): List<Movie>
+
     @Query("DELETE FROM movies")
     suspend fun clearMovies()
 }
