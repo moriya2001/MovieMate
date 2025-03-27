@@ -16,6 +16,7 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
         fun onItemClick(position: Int, movie: Movie)
         fun onItemEditClick(position: Int,movie: Movie)
         fun onItemDelete(position: Int,movie: Movie)
+        fun onItemShare(position: Int,movie: Movie)
     }
 
     private var mListener: OnItemClickListener? = null
@@ -51,10 +52,16 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
             }
 
             if (UserSession.getUser()?.userId == movie.userId){
-                binding.postActionWrapper.visibility = View.VISIBLE
+                binding.postEditView.visibility = View.VISIBLE
+                binding.postDeleteView.visibility = View.VISIBLE
             }
             else{
-                binding.postActionWrapper.visibility = View.GONE
+                binding.postEditView.visibility = View.GONE
+                binding.postDeleteView.visibility = View.GONE
+            }
+
+            binding.root.setOnClickListener {
+                mListener.onItemClick(layoutPosition,movie)
             }
 
             binding.postDeleteView.setOnClickListener {
@@ -63,6 +70,10 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
 
             binding.postEditView.setOnClickListener {
                 mListener.onItemEditClick(layoutPosition,movie)
+            }
+
+            binding.postShareView.setOnClickListener {
+                mListener.onItemShare(layoutPosition,movie)
             }
         }
     }
