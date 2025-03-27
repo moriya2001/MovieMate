@@ -18,9 +18,8 @@ import net.moviemate.app.R
 import net.moviemate.app.adapaters.MoviesAdapter
 import net.moviemate.app.databinding.FragmentMoviesBinding
 import net.moviemate.app.m.Movie
-import net.moviemate.app.mvf.MoviesViewModelFactory
+import net.moviemate.app.vmf.MoviesViewModelFactory
 import net.moviemate.app.room.MovieDatabase
-import net.moviemate.app.utils.UserSession
 import net.moviemate.app.utils.WrapContentLinearLayoutManager
 import net.moviemate.app.vm.MoviesViewModel
 import java.io.File

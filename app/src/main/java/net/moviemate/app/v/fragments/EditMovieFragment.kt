@@ -16,11 +16,9 @@ import com.squareup.picasso.Picasso
 import net.moviemate.app.R
 import net.moviemate.app.databinding.FragmentEditMovieBinding
 import net.moviemate.app.m.Movie
-import net.moviemate.app.mvf.MoviesViewModelFactory
+import net.moviemate.app.vmf.MoviesViewModelFactory
 import net.moviemate.app.room.MovieDatabase
-import net.moviemate.app.utils.UserSession
 import net.moviemate.app.vm.MoviesViewModel
-import java.util.UUID
 
 
 class EditMovieFragment : Fragment() {

@@ -14,11 +14,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.storage.FirebaseStorage
-import net.moviemate.app.R
 import net.moviemate.app.adapaters.MoviesAdapter
 import net.moviemate.app.databinding.FragmentMyPostsBinding
 import net.moviemate.app.m.Movie
-import net.moviemate.app.mvf.MoviesViewModelFactory
+import net.moviemate.app.vmf.MoviesViewModelFactory
 import net.moviemate.app.room.MovieDatabase
 import net.moviemate.app.utils.UserSession
 import net.moviemate.app.utils.WrapContentLinearLayoutManager

@@ -11,10 +11,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.squareup.picasso.Picasso
 import net.moviemate.app.R
 import net.moviemate.app.databinding.FragmentAddMovieBinding
 import net.moviemate.app.m.Movie
-import net.moviemate.app.mvf.MoviesViewModelFactory
+import net.moviemate.app.m.MovieEntity
+import net.moviemate.app.vmf.MoviesViewModelFactory
 import net.moviemate.app.room.MovieDatabase
 import net.moviemate.app.utils.UserSession
 import net.moviemate.app.vm.MoviesViewModel
@@ -26,6 +29,7 @@ class AddMovieFragment : Fragment() {
     private lateinit var viewModel: MoviesViewModel
     private var imageUri: Uri? = null
     private lateinit var pickImageLauncher: ActivityResultLauncher<String>
+    private var movie:MovieEntity ? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +55,26 @@ class AddMovieFragment : Fragment() {
         // Inflate the layout for this fragment
         binding =  FragmentAddMovieBinding.inflate(inflater, container, false)
 
+        val args: AddMovieFragmentArgs by navArgs()
+        movie = args.movie
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (movie != null){
+            Picasso.get().load(movie!!.Poster)
+                .placeholder(R.drawable.loader)
+                .error(R.drawable.placeholder)
+                .resize(600,400)
+                .centerCrop()
+                .into(binding.ivMovieImage)
+            binding.ivMovieImage.visibility = View.VISIBLE
+
+            binding.etMovieTitle.setText(movie!!.Title)
+        }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
@@ -81,17 +100,17 @@ class AddMovieFragment : Fragment() {
             val review = binding.etMovieReview.text.toString()
             val link = binding.etMovieLink.text.toString()
             if (validation(title,review)){
-                val movie = Movie(
+                val newMovie = Movie(
                     id = UUID.randomUUID().toString(),
                     title = title,
                     review = review,
-                    link = link, image = "",
+                    link = link, image = if (movie != null){movie!!.Poster}else{ ""},
                     userId = "${UserSession.getUser()?.userId}",
                     username = "${UserSession.getUser()?.username}",
                     userImage = "${UserSession.getUser()?.image}",
                     timeStamp = System.currentTimeMillis()
                 )
-                viewModel.insertMovie(movie, imageUri)
+                viewModel.insertMovie(newMovie, imageUri)
             }
         }
 
