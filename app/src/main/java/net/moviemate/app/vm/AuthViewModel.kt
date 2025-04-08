@@ -1,6 +1,7 @@
 package net.moviemate.app.vm
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,7 +43,6 @@ class AuthViewModel : ViewModel() {
     fun signUp(username: String, email: String, password: String, profileImageUri: Uri?) {
         viewModelScope.launch {
             try {
-                // Step 1: Create user with email and password
                 val authResult = auth.createUserWithEmailAndPassword(email, password).await()
                 val firebaseUser = authResult.user
 
@@ -50,12 +50,10 @@ class AuthViewModel : ViewModel() {
                     val userId = user.uid
                     var imageUrl = ""
 
-                    // Step 2: Upload profile image (if available)
                     profileImageUri?.let { uri ->
                         imageUrl = uploadProfileImage(userId, uri)
                     }
 
-                    // Step 3: Create user data object
                     val userData = mapOf(
                         "userId" to userId,
                         "username" to username,
@@ -63,10 +61,9 @@ class AuthViewModel : ViewModel() {
                         "image" to imageUrl
                     )
 
-                    // Step 4: Save user details to Firestore
+                    UserSession.setUser(User(userId,username,email,imageUrl))
+                    Log.d("TEST1000",userData.toString())
                     saveUserToFirestore(userId, userData)
-
-                    // Step 5: Update LiveData
                     _userLiveData.postValue(User(userId,username, email, imageUrl))
                 }
             } catch (e: Exception) {

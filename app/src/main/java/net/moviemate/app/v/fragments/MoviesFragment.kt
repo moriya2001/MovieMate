@@ -74,7 +74,8 @@ class MoviesFragment : Fragment(),MoviesAdapter.OnItemClickListener {
 
 
         binding.addFabBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_moviesFragment_to_addMovieFragment)
+            val action = MoviesFragmentDirections.actionMoviesFragmentToAddMovieFragment(null)
+            findNavController().navigate(action)
         }
 
 

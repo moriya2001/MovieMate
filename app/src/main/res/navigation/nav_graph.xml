@@ -91,7 +91,9 @@
 
         <argument
             android:name="movie"
-            app:argType="net.moviemate.app.m.MovieEntity" />
+            app:argType="net.moviemate.app.m.MovieEntity"
+            app:nullable="true"
+            />
 
     </fragment>
     <fragment
@@ -102,7 +104,8 @@
 
         <argument
             android:name="user"
-            app:argType="net.moviemate.app.m.User" />
+            app:argType="net.moviemate.app.m.User"
+            app:nullable="true"/>
 
     </fragment>
     <fragment
@@ -113,7 +116,8 @@
 
         <argument
             android:name="movie"
-            app:argType="net.moviemate.app.m.Movie" />
+            app:argType="net.moviemate.app.m.Movie"
+            app:nullable="true"/>
 
     </fragment>
     <fragment
@@ -124,7 +128,8 @@
 
         <argument
             android:name="movie"
-            app:argType="net.moviemate.app.m.Movie" />
+            app:argType="net.moviemate.app.m.Movie"
+            app:nullable="true"/>
 
     </fragment>
 </navigation>

@@ -82,6 +82,7 @@
                     app:tint="@color/black"
                     android:id="@+id/post_share_view"
                     android:layout_marginEnd="10dp"
+                    android:visibility="gone"
                     />
 
                <androidx.appcompat.widget.AppCompatImageView
