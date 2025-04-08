@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".v.fragments.MovieDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,11 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:padding="12dp">
+            app:layout_constraintTop_toTopOf="parent">
 
+            <!-- Movie Poster -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/movieImage"
                 android:layout_width="match_parent"
@@ -27,81 +29,93 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/placeholder" />
 
-
+            <!-- Movie Title -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/movieTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
                 android:text="Movie Title"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:paddingTop="8dp"
-                android:textColor="@android:color/black" />
+                android:textStyle="bold" />
 
+            <!-- Movie Review -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/movieReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingTop="2dp"
                 android:text="Review goes here..."
-                android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"
-                android:paddingTop="4dp" />
+                android:textSize="14sp" />
 
+            <!-- Movie Link -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/movieLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="Movie link"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp" />
 
+            <!-- User Profile & Username -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingTop="8dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/userImage"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/placeholder"
-                    android:layout_marginEnd="8dp" />
+                    android:src="@drawable/placeholder" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Posted by Username"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
+                <!-- This linear layout is hidden by default, 
+                     for editing/deleting the movie if needed -->
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/post_action_wrapper"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="end|center_vertical"
-                    android:id="@+id/post_action_wrapper"
-                    android:visibility="gone"
-                    >
+                    android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/post_edit_view"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:src="@drawable/ic_edit"
-                        app:tint="@color/black"
-                        android:id="@+id/post_edit_view"
                         android:layout_marginEnd="10dp"
-                        />
+                        android:src="@drawable/ic_edit"
+                        app:tint="@color/black" />
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/post_delete_view"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:src="@drawable/ic_delete"
-                        android:id="@+id/post_delete_view"
-                        app:tint="@color/primary"
-                        />
+                        app:tint="@color/primary" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
